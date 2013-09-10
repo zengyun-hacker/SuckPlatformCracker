@@ -12,7 +12,7 @@
 #import "GVUserDefaults+DoubanOauth.h"
 
 //获取authorization code的链接
-static NSString * const DOUBAN_CODE_URL = @"https://www.douban.com/service/auth2/auth";
+static NSString * const DOUBAN_OAUTH_URL = @"https://www.douban.com/service/auth2/auth";
 //获取access token的链接
 static NSString * const DOUBAN_TOKEN_BASE_URL = @"https://www.douban.com";
 static NSString * const DOUBAN_API_BASE_URL = @"https://api.douban.com";
@@ -73,7 +73,7 @@ SINGLETON_GCD(DoubanOauthClient);
 }
 
 - (NSString *)authorizationCodeURL {
-    return [NSString stringWithFormat:@"%@?client_id=%@&redirect_uri=%@&response_type=code",DOUBAN_CODE_URL,DOUBAN_API_KEY,REDIRECT_URL];
+    return [NSString stringWithFormat:@"%@?client_id=%@&redirect_uri=%@&response_type=code",DOUBAN_OAUTH_URL,DOUBAN_API_KEY,REDIRECT_URL];
 }
 
 - (DoubanOauthClient *)init {
@@ -188,7 +188,7 @@ SINGLETON_GCD(DoubanOauthClient);
         finishBlock();
     }
     else {
-        //如果未授权，则先挑战到授权界面
+        //如果未授权，则先跳转到授权界面
         [self startOauthAuthorization:^{
             finishBlock();
         } failure:^(NSInteger failureCode) {
