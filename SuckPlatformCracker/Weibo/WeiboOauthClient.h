@@ -10,4 +10,8 @@
 
 @interface WeiboOauthClient : OauthClient
 
++ (WeiboOauthClient *)sharedWeiboOauthClient;
+
+- (void)sendPost:(NSString *)postText success:(ZYBlock)success failure:(ZYBlock)failure;
+
 @end

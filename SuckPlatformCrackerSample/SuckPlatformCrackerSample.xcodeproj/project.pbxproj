@@ -20,12 +20,12 @@
 		BD15A52C1788164300C3996F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD15A52A1788164300C3996F /* MainStoryboard.storyboard */; };
 		BD15A52F1788164300C3996F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD15A52E1788164300C3996F /* ViewController.m */; };
 		BD32FE6417DDB02E008F7B77 /* GVUserDefaults+DoubanOauth.m in Sources */ = {isa = PBXBuildFile; fileRef = BD32FE6317DDB02E008F7B77 /* GVUserDefaults+DoubanOauth.m */; };
-		BD8B670E17D8784B0000244B /* AuthorizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8B670D17D8784B0000244B /* AuthorizationViewController.m */; };
-		BD8B671217D880DC0000244B /* DoubanAuthorizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8B671117D880DC0000244B /* DoubanAuthorizationViewController.m */; };
 		BDB8390217D9CC4D005EE3C8 /* DoubanOauthClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BDB8390117D9CC4D005EE3C8 /* DoubanOauthClient.m */; };
 		BDB8390517D9CC77005EE3C8 /* OauthClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BDB8390417D9CC77005EE3C8 /* OauthClient.m */; };
 		BDB8390817DB1AD7005EE3C8 /* AuthorizationControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BDB8390717DB1AD7005EE3C8 /* AuthorizationControl.m */; };
 		BDB8390A17DD66DC005EE3C8 /* AuthorizationControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDB8390917DD66DC005EE3C8 /* AuthorizationControl.xib */; };
+		BDC0A62C17DECA8E00849848 /* WeiboOauthClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC0A62B17DECA8E00849848 /* WeiboOauthClient.m */; };
+		BDC0A63217DF4B7A00849848 /* GVUserDefaults+WeiboOauth.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC0A63117DF4B7A00849848 /* GVUserDefaults+WeiboOauth.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,10 +47,6 @@
 		BD15A52E1788164300C3996F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		BD32FE6217DDB02E008F7B77 /* GVUserDefaults+DoubanOauth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GVUserDefaults+DoubanOauth.h"; sourceTree = "<group>"; };
 		BD32FE6317DDB02E008F7B77 /* GVUserDefaults+DoubanOauth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GVUserDefaults+DoubanOauth.m"; sourceTree = "<group>"; };
-		BD8B670C17D8784B0000244B /* AuthorizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizationViewController.h; sourceTree = "<group>"; };
-		BD8B670D17D8784B0000244B /* AuthorizationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizationViewController.m; sourceTree = "<group>"; };
-		BD8B671017D880DC0000244B /* DoubanAuthorizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubanAuthorizationViewController.h; sourceTree = "<group>"; };
-		BD8B671117D880DC0000244B /* DoubanAuthorizationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubanAuthorizationViewController.m; sourceTree = "<group>"; };
 		BD8B671317D8A3DA0000244B /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BD8B671517D9696B0000244B /* BlockTypeDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockTypeDefine.h; sourceTree = "<group>"; };
 		BDB8390017D9CC4D005EE3C8 /* DoubanOauthClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubanOauthClient.h; sourceTree = "<group>"; };
@@ -60,6 +56,10 @@
 		BDB8390617DB1AD7005EE3C8 /* AuthorizationControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizationControl.h; sourceTree = "<group>"; };
 		BDB8390717DB1AD7005EE3C8 /* AuthorizationControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizationControl.m; sourceTree = "<group>"; };
 		BDB8390917DD66DC005EE3C8 /* AuthorizationControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthorizationControl.xib; sourceTree = "<group>"; };
+		BDC0A62A17DECA8E00849848 /* WeiboOauthClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboOauthClient.h; sourceTree = "<group>"; };
+		BDC0A62B17DECA8E00849848 /* WeiboOauthClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboOauthClient.m; sourceTree = "<group>"; };
+		BDC0A63017DF4B7A00849848 /* GVUserDefaults+WeiboOauth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GVUserDefaults+WeiboOauth.h"; sourceTree = "<group>"; };
+		BDC0A63117DF4B7A00849848 /* GVUserDefaults+WeiboOauth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GVUserDefaults+WeiboOauth.m"; sourceTree = "<group>"; };
 		E284B2A24D8C4E0B9E56706E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		FFC17B844E5C4BB3B1AF69D3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -181,6 +181,10 @@
 		BD15A5391788171600C3996F /* Weibo */ = {
 			isa = PBXGroup;
 			children = (
+				BDC0A62A17DECA8E00849848 /* WeiboOauthClient.h */,
+				BDC0A62B17DECA8E00849848 /* WeiboOauthClient.m */,
+				BDC0A63017DF4B7A00849848 /* GVUserDefaults+WeiboOauth.h */,
+				BDC0A63117DF4B7A00849848 /* GVUserDefaults+WeiboOauth.m */,
 			);
 			path = Weibo;
 			sourceTree = "<group>";
@@ -188,10 +192,6 @@
 		BD8B670B17D8784B0000244B /* AuthorizationViewController */ = {
 			isa = PBXGroup;
 			children = (
-				BD8B670C17D8784B0000244B /* AuthorizationViewController.h */,
-				BD8B670D17D8784B0000244B /* AuthorizationViewController.m */,
-				BD8B671017D880DC0000244B /* DoubanAuthorizationViewController.h */,
-				BD8B671117D880DC0000244B /* DoubanAuthorizationViewController.m */,
 				BDB8390617DB1AD7005EE3C8 /* AuthorizationControl.h */,
 				BDB8390717DB1AD7005EE3C8 /* AuthorizationControl.m */,
 				BDB8390917DD66DC005EE3C8 /* AuthorizationControl.xib */,
@@ -320,12 +320,12 @@
 				BD15A51F1788164300C3996F /* main.m in Sources */,
 				BD15A5231788164300C3996F /* AppDelegate.m in Sources */,
 				BD15A52F1788164300C3996F /* ViewController.m in Sources */,
-				BD8B670E17D8784B0000244B /* AuthorizationViewController.m in Sources */,
-				BD8B671217D880DC0000244B /* DoubanAuthorizationViewController.m in Sources */,
 				BDB8390217D9CC4D005EE3C8 /* DoubanOauthClient.m in Sources */,
 				BDB8390517D9CC77005EE3C8 /* OauthClient.m in Sources */,
 				BDB8390817DB1AD7005EE3C8 /* AuthorizationControl.m in Sources */,
 				BD32FE6417DDB02E008F7B77 /* GVUserDefaults+DoubanOauth.m in Sources */,
+				BDC0A62C17DECA8E00849848 /* WeiboOauthClient.m in Sources */,
+				BDC0A63217DF4B7A00849848 /* GVUserDefaults+WeiboOauth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

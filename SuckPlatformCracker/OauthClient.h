@@ -59,7 +59,4 @@ typedef NS_ENUM(NSInteger, OauthFailType)
  */
 - (void)logout;
 
-
-- (void)sendPost:(NSString *)postText withImage:(UIImage *)postImage withRecTitle:(NSString *)recTitle withRecUrl:(NSString *)recUrl withRecDes:(NSString *)recDesc withRecImageUrl:(NSString *)recImageUrl success:(ZYBlock)success failure:(ZYBlock)failure;
-
 @end

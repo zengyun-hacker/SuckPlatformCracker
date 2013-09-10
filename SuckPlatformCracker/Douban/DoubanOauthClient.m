@@ -144,7 +144,7 @@ SINGLETON_GCD(DoubanOauthClient);
 }
 
 - (void)sendPost:(NSString *)postText withImage:(UIImage *)postImage withRecTitle:(NSString *)recTitle withRecUrl:(NSString *)recUrl withRecDes:(NSString *)recDesc withRecImageUrl:(NSString *)recImageUrl success:(ZYBlock)success failure:(ZYBlock)failure{
-    ZYBlock finishBlock = ^{
+    ZYBlock postBlock = ^{
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         [param setObject:DOUBAN_API_KEY forKey:@"source"];
         
@@ -185,12 +185,12 @@ SINGLETON_GCD(DoubanOauthClient);
     
     if (self.isLogin) {
         //如果已经授权，则直接发送文字
-        finishBlock();
+        postBlock();
     }
     else {
         //如果未授权，则先跳转到授权界面
         [self startOauthAuthorization:^{
-            finishBlock();
+            postBlock();
         } failure:^(NSInteger failureCode) {
             failure();
         }];

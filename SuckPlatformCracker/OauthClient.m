@@ -24,6 +24,26 @@
     return _authorizationController;
 }
 
+- (void)startOauthAuthorization:(ZYBlock)success failure:(OauthFailureBlock)failure{
+    
+}
+
+- (void)retrieveAccessToken:(NSString *)authorizationCode success:(ZYBlock)success failure:(OauthFailureBlock)failure{
+    
+}
+
+- (BOOL)authorizationCanceled:(NSString *)returnURL {
+    
+}
+
+- (NSString *)getAuthorizationCode:(NSString *)oauthUrl {
+    
+}
+
+- (void)logout {
+    
+}
+
 - (void)startOauthAuthorization:(NSString *)oauthUrl success:(ZYBlock)success failure:(OauthFailureBlock)failure {
     //跳转到授权界面
     [self loadOauthURL:oauthUrl finish:^(NSString *finishUrl) {

@@ -18,6 +18,7 @@ static NSTimeInterval const AUTHORIZATION_CONTROL_SHOW_HIDE_DURATION = 0.5;
     if (self) {
         //放到界面底部
         self.frame = CGRectMake(0, SCREEN_HEIGHT, self.frame.size.width, self.frame.size.height);
+        self.webView.scalesPageToFit = YES;
     }
     return self;
 }
