@@ -16,6 +16,8 @@ static NSString * const WEIBO_OAUTH_URL = @"https://api.weibo.com/oauth2/authori
 static NSString * const WEIBO_TOKEN_BASE_URL = @"https://api.weibo.com";
 static NSString * const WEIBO_TOKEN_PATH = @"/oauth2/access_token";
 static NSString * const WEIBO_POST_PATH = @"/2/statuses/update.json";
+static NSString * const WEIBO_SSO_BASE_URL = @"sinaweibosso://login";
+static NSString * const WEIBO_SSO_IPAD_BASE_URL = @"sinaweibohdsso://login";
 
 @implementation WeiboOauthClient
 
@@ -71,7 +73,24 @@ SINGLETON_GCD(WeiboOauthClient)
     self.expireTime = 0;
 }
 
+//默认使用”sinaweibosso.productname://”作为call back scheme
+- (NSString *)ssoCallbackScheme {
+    return [NSString stringWithFormat:@"sinaweibosso.%@://",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
+}
+
+- (NSString *)ssoIPadUrl {
+    return [NSString stringWithFormat:@"%@?client_id=%@&redirect_uri=%@&callback_uri=%@",WEIBO_SSO_IPAD_BASE_URL,WEIBO_APP_KEY,REDIRECT_URL,[self ssoCallbackScheme]];
+}
+
+- (NSString *)ssoIPhoneUrl {
+    return [NSString stringWithFormat:@"%@?client_id=%@&redirect_uri=%@&callback_uri=%@",WEIBO_SSO_BASE_URL,WEIBO_APP_KEY,REDIRECT_URL,[self ssoCallbackScheme]];
+}
+
 - (void)startOauthAuthorization:(ZYBlock)success failure:(OauthFailureBlock)failure {
+    if ([self weiboSsoAuthorization]) {
+        success();
+        return;
+    }
     [self startOauthAuthorization:[self authorizationCodeURL] success:^{
         success();
     } failure:^(NSInteger failureCode) {
@@ -80,8 +99,36 @@ SINGLETON_GCD(WeiboOauthClient)
 }
 
 ///新浪sso授权
-- (void)weiboSsoAuthorization:(ZYBlock)success failure:(ZYBlock)failure {
-    NSDictionary *param = @{@"client_id": WEIBO_APP_KEY,@"code":WEIBO_APP_SECRET,}
+//注意：使用sso授权必须在appdelegate的openURL中调用WeiboOauthClient的handleOpenURL函数来获取access token
+- (BOOL)weiboSsoAuthorization{
+    UIDevice *currentDevice = [UIDevice currentDevice];
+    if ([currentDevice respondsToSelector:@selector(isMultitaskingSupported)] && currentDevice.isMultitaskingSupported) {
+        //先发送给微博iPad客户端
+        if ([[UIApplication sharedApplication] openURL:[NSURL URLWithString:[self ssoIPadUrl]]]) {
+            return YES;
+        }
+        //再发送给微博iPhone客户端
+        if ([[UIApplication sharedApplication] openURL:[NSURL URLWithString:[self ssoIPhoneUrl]]]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (BOOL)handOpenURL:(NSURL *)openURL {
+    NSString *openUrl = openURL.absoluteString;
+    if ([openUrl hasPrefix:[self ssoCallbackScheme]]) {
+        if ([openUrl rangeOfString:@"access_token"].location != NSNotFound && [openUrl rangeOfString:@"expires_in"].location != NSNotFound) {
+            //取出access token
+            self.accessToken = [self getParamValueFromUrl:openUrl paramName:@"access_token"];
+            //取出expire time
+            self.expireTime = [[self getParamValueFromUrl:openUrl paramName:@"expires_in"] doubleValue];
+            //取出user id
+            self.userID = [NSNumber numberWithInteger:[[self getParamValueFromUrl:openUrl paramName:@"uid"] integerValue]];
+        }
+    }
+    return NO;
 }
 
 - (NSString *)getAuthorizationCode:(NSString *)oauthUrl {
@@ -132,6 +179,36 @@ SINGLETON_GCD(WeiboOauthClient)
             failure();
         }];
     }
+}
+
+//用来取出URL中的参数
+- (NSString *)getParamValueFromUrl:(NSString*)url paramName:(NSString *)paramName{
+    if (![paramName hasSuffix:@"="])
+    {
+        paramName = [NSString stringWithFormat:@"%@=", paramName];
+    }
+    
+    NSString * str = nil;
+    NSRange start = [url rangeOfString:paramName];
+    if (start.location != NSNotFound)
+    {
+        // confirm that the parameter is not a partial name match
+        unichar c = '?';
+        if (start.location != 0)
+        {
+            c = [url characterAtIndex:start.location - 1];
+        }
+        if (c == '?' || c == '&' || c == '#')
+        {
+            NSRange end = [[url substringFromIndex:start.location+start.length] rangeOfString:@"&"];
+            NSUInteger offset = start.location+start.length;
+            str = end.location == NSNotFound ?
+            [url substringFromIndex:offset] :
+            [url substringWithRange:NSMakeRange(offset, end.location)];
+            str = [str stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        }
+    }
+    return str;
 }
 
 @end

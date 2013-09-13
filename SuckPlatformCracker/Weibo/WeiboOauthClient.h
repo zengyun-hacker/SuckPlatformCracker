@@ -10,6 +10,8 @@
 
 @interface WeiboOauthClient : OauthClient
 
+@property (nonatomic,strong) NSNumber *userID;
+
 + (WeiboOauthClient *)sharedWeiboOauthClient;
 
 - (void)sendPost:(NSString *)postText success:(ZYBlock)success failure:(ZYBlock)failure;
